@@ -1,0 +1,15 @@
+- name: Install Postfix
+  apt:
+    name: postfix
+    state: present
+
+- name: Configure Postfix
+  template:
+    src: templates/postfix-main.cf.j2
+    dest: /etc/postfix/main.cf
+  notify: restart postfix
+
+- name: Install Dovecot
+  apt:
+    name: dovecot-core
+    state: present
